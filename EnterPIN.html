@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Screen</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #012B56; /* Dark blue background */
+    }
+    input::placeholder {
+      color: #BCCCDC;
+      opacity: 1;
+    }
+    .arrow-btn {
+      background-color: #404040; /* Dark gray background for the button */
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 10px;
+      height: 40px;
+      cursor: pointer;
+      border-radius: 0 0.25rem 0.25rem 0;
+      transition: background-color 0.2s;
+    }
+    .arrow-btn:hover {
+      background-color: #606060; /* Slightly lighter gray on hover */
+    }
+    .arrow-icon {
+      width: 20px;
+      height: 20px;
+      color: white;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center h-screen">
+
+  <div class="text-center">
+    <!-- Profile Picture -->
+    <div class="w-32 h-32 mx-auto bg-gray-500 rounded-full flex items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="white" class="w-16 h-16">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 14c4.418 0 8-1.791 8-4s-3.582-4-8-4-8 1.791-8 4 3.582 4 8 4zm0 0c4.418 0 8 1.791 8 4v3H4v-3c0-2.209 3.582-4 8-4zm0 0c4.418 0 8 1.791 8 4v3H4v-3c0-2.209 3.582-4 8-4z" />
+      </svg>
+    </div>
+
+    <!-- Username -->
+    <div class="text-white text-2xl mt-4 font-light">Ruth</div>
+
+    <!-- PIN Input with Arrow Button -->
+    <div class="mt-6 flex items-center justify-center">
+      <input 
+        id="pin-input"
+        type="password" 
+        placeholder="PIN" 
+        class="w-64 h-10 bg-transparent border border-gray-400 text-white placeholder-gray-300 outline-none focus:border-white px-2 rounded-l">
+      <button 
+        id="enter-btn"
+        class="arrow-btn">
+        <!-- Arrow Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="arrow-icon">
+          <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793L9.146 4.354a.5.5 0 1 1 .708-.708l4.5 4.5a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Error Message -->
+    <div class="mt-6 text-white">
+      <div class="text-gray-300 text-sm mb-2">Enter 4-number PIN.</div>
+      <div id="error-message" class="text-red-500 text-sm hidden">Wrong PIN, please try again.</div>
+    </div>
+  </div>
+
+  <script>
+    // Function to handle PIN validation
+    function validatePin() {
+      const pin = document.getElementById('pin-input').value;
+      const errorMessage = document.getElementById('error-message');
+
+      if (pin === "0902") {
+        // Redirect to another page
+        window.location.href = "success.html"; // Replace with the actual URL of the next page
+      } else {
+        // Show error message
+        errorMessage.classList.remove('hidden');
+      }
+    }
+
+    // Add event listener to the "Enter" button
+    document.getElementById('enter-btn').addEventListener('click', validatePin);
+
+    // Add event listener for the "Enter" key
+    document.getElementById('pin-input').addEventListener('keydown', function(event) {
+      if (event.key === "Enter") {
+        validatePin();
+      }
+    });
+  </script>
+
+</body>
+</html>
