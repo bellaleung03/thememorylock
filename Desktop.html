@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desktop Simulation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-image: url('https://img.pikbest.com/wp/202345/wallpaper-hd-landscape-wallpapers-free-download-png_9591924.jpg!bw700');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .icon {
+      width: 64px;
+      height: 64px;
+    }
+    .icon-container:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 0.5rem;
+    }
+    .file-explorer {
+      display: none; /* Initially hidden */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      z-index: 10;
+    }
+    .document {
+      display: none; /* Initially hidden */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      z-index: 20;
+      width: 800px; /* Width of the document */
+      height: 600px; /* Height of the document */
+      position: relative; /* Relative positioning for the close button */
+    }
+    iframe {
+      width: 100%;
+      height: calc(100% - 50px); /* Adjust height to make room for the close button */
+      border: none;
+    }
+    .close-button {
+      position: absolute;
+      bottom: 10px; /* Position from the bottom */
+      right: 10px; /* Position from the right */
+      background-color: #4A5568; /* Dark background */
+      color: white; /* White text */
+      padding: 10px 15px; /* Padding */
+      border: none; /* No border */
+      border-radius: 5px; /* Rounded corners */
+      cursor: pointer; /* Pointer cursor */
+    }
+  </style>
+  <script>
+    function toggleExplorer() {
+      const explorer = document.getElementById('file-explorer');
+      explorer.style.display = explorer.style.display === 'none' || explorer.style.display === '' ? 'block' : 'none';
+    }
+
+    function showDocument(name) {
+      const documentEl = document.getElementById('document');
+      const iframe = document.getElementById('document-iframe');
+      documentEl.style.display = 'block';
+      iframe.src = `data:text/html;charset=utf-8,<html><head><title>${name}</title></head><body style="font-family: Arial, sans-serif; margin: 20px;"><h1>${name}</h1><p>Age: ${Math.floor(Math.random() * 50) + 20}</p><h2>Experience</h2><ul><li>Improved customer retention by 25%</li><li>Reduced operational costs by 15%</li></ul><h2>Education</h2><p>Jasper University, BS Data Science, 20XX</p></body></html>`;
+    }
+
+    function closeDocument() {
+      const documentEl = document.getElementById('document');
+      documentEl.style.display = 'none';
+    }
+  </script>
+</head>
+<body class="h-screen w-screen relative">
+
+  <!-- Desktop Icons -->
+  <div class="absolute left-8 top-16 space-y-8 text-white">
+    <!-- Recycle Bin Icon -->
+    <div class="icon-container flex flex-col items-center cursor-pointer">
+      <img
+        src="https://www.tenforums.com/geek/gars/images/2/types/thumb_Recycle_Bin_Empty.png"
+        alt="Recycle Bin Icon"
+        class="icon"
+      />
+      <span class="text-center text-sm mt-1">Recycle Bin</span>
+    </div>
+    <!-- New Folder Icon -->
+    <div class="icon-container flex flex-col items-center cursor-pointer" onclick="toggleExplorer()">
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNRtmxNsSI-KCAU5Bx7_XKuBVnh2oizLOLVA&s"
+        alt="Folder Icon"
+        class="icon"
+      />
+      <span class="text-center text-sm mt-1">Patients' Files</span>
+    </div>
+  </div>
+
+  <!-- File Explorer -->
+  <div id="file-explorer" class="file-explorer">
+    <h2 class="text-lg font-semibold mb-4">Patients' Files</h2>
+    <div class="space-y-2">
+      <!-- Simulated Word Documents -->
+      <div class="flex justify-between" onclick="showDocument('Aaron Anderson')">
+        <span>Aaron Anderson.docx</span>
+        <button class="text-blue-500">Open</button>
+      </div>
+      <div class="flex justify-between" onclick="showDocument('Emily Johnson')">
+        <span>Emily Johnson.docx</span>
+        <button class="text-blue-500">Open</button>
+      </div>
+      <div class="flex justify-between" onclick="showDocument('Lucas Thompson')">
+        <span>Lucas Thompson.docx</span>
+        <button class="text-blue-500">Open</button>
+      </div>
+      <div class="flex justify-between" onclick="showDocument('Sarah Williams')">
+        <span>Sarah Williams.docx</span>
+        <button class="text-blue-500">Open</button>
+      </div>
+      <div class="flex justify-between" onclick="showDocument('Daniel Brown')">
+        <span>Daniel Brown.docx</span>
+        <button class="text-blue-500">Open</button>
+      </div>
+      <div class="flex justify-between" onclick="showDocument('George Davis')">
+        <span>George Davis.docx</span>
+        <button class="text-blue-500">Open</button>
+      </div>
+      <div class="flex justify-between" onclick="showDocument('Ulla Wilson')">
+        <span>Ulla Wilson.docx</span>
+        <button class="text-blue-500">Open</button>
+      </div>
+      <div class="flex justify-between" onclick="showDocument('Olivia Miller')">
+        <span>Olivia Miller.docx</span>
+        <button class="text-blue-500">Open</button>
+      </div>
+      <div class="flex justify-between" onclick="showDocument('Matthew Taylor')">
+        <span>Matthew Taylor.docx</span>
+        <button class="text-blue-500">Open</button>
+      </div>
+      <div class="flex justify-between" onclick="showDocument('Rachel Anderson')">
+        <span>Rachel Anderson.docx</span>
+        <button class="text-blue-500">Open</button>
+      </div>
+    </div>
+    <button class="mt-4 bg-gray-800 text-white px-4 py-2 rounded" onclick="toggleExplorer()">Close</button>
+  </div>
+
+  <!-- Document Display -->
+  <div id="document" class="document">
+    <iframe id="document-iframe" src=""></iframe>
+    <button class="close-button" onclick="closeDocument()">Close</button>
+  </div>
+
+  <!-- Taskbar -->
+  <div class="absolute bottom-0 w-full h-12 bg-gray-800 flex items-center px-4">
+    <!-- Taskbar Items -->
+    <div class="flex items-center space-x-4">
+      <!-- Up Arrow Icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="white" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+      </svg>
+      <!-- Windows Icon -->
+      <img src="https://cdn.icon-icons.com/icons2/1488/PNG/512/5314-windows_102509.png" alt="Windows Icon" class="w-6 h-6" />
+    </div>
+  </div>
+</body>
+</html>
