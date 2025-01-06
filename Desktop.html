@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Desktop</title>
+  <title>Desktop Simulation</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -63,18 +63,70 @@
       border-radius: 5px; /* Rounded corners */
       cursor: pointer; /* Pointer cursor */
     }
+    .modal {
+      display: none; /* Initially hidden */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 15;
+    }
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    }
+    .error-message {
+      color: red;
+      margin-top: 10px;
+    }
   </style>
   <script>
+    let currentCallback;
+
     function toggleExplorer() {
       const explorer = document.getElementById('file-explorer');
       explorer.style.display = explorer.style.display === 'none' || explorer.style.display === '' ? 'block' : 'none';
     }
 
+    function showPasswordModal(callback) {
+      currentCallback = callback; // Store the callback function
+      const modal = document.getElementById('password-modal');
+      modal.style.display = 'flex'; // Show the modal
+      document.getElementById('error-message').innerText = ''; // Clear any previous error message
+    }
+
+    function checkPassword() {
+      const inputs = document.querySelectorAll('.password-input');
+      const password = Array.from(inputs).map(input => input.value).join('');
+      
+      if (password === "LAUGH") {
+        document.getElementById('password-modal').style.display = 'none'; // Hide modal
+        currentCallback(); // Call the callback function
+      } else {
+        document.getElementById('error-message').innerText = "Wrong Password, Please try again"; // Show error message
+      }
+    }
+
     function showDocument(name) {
-      const documentEl = document.getElementById('document');
-      const iframe = document.getElementById('document-iframe');
-      documentEl.style.display = 'block';
-      iframe.src = `data:text/html;charset=utf-8,<html><head><title>${name}</title></head><body style="font-family: Arial, sans-serif; margin: 20px;"><h1>${name}</h1><p>Age: ${Math.floor(Math.random() * 50) + 20}</p><h2>Experience</h2><ul><li>Improved customer retention by 25%</li><li>Reduced operational costs by 15%</li></ul><h2>Education</h2><p>Jasper University, BS Data Science, 20XX</p></body></html>`;
+      if (name === 'Aaron Anderson') {
+        showPasswordModal(() => {
+          const documentEl = document.getElementById('document');
+          const iframe = document.getElementById('document-iframe');
+          documentEl.style.display = 'block';
+          iframe.src = `data:text/html;charset=utf-8,<html><head><title>${name}</title></head><body style="font-family: Arial, sans-serif; margin: 20px;"><h1>${name}</h1><p>Age: ${Math.floor(Math.random() * 50) + 20}</p><h2>Experience</h2><ul><li>Improved customer retention by 25%</li><li>Reduced operational costs by 15%</li></ul><h2>Education</h2><p>Jasper University, BS Data Science, 20XX</p></body></html>`;
+        });
+      } else {
+        const documentEl = document.getElementById('document');
+        const iframe = document.getElementById('document-iframe');
+        documentEl.style.display = 'block';
+        iframe.src = `data:text/html;charset=utf-8,<html><head><title>${name}</title></head><body style="font-family: Arial, sans-serif; margin: 20px;"><h1>${name}</h1><p>Age: ${Math.floor(Math.random() * 50) + 20}</p><h2>Experience</h2><ul><li>Improved customer retention by 25%</li><li>Reduced operational costs by 15%</li></ul><h2>Education</h2><p>Jasper University, BS Data Science, 20XX</p></body></html>`;
+      }
     }
 
     function closeDocument() {
@@ -84,6 +136,25 @@
   </script>
 </head>
 <body class="h-screen w-screen relative">
+
+  <!-- Password Modal -->
+  <div id="password-modal" class="modal">
+    <div class="modal-content">
+      <h2>Please enter password:</h2>
+      <div class="flex space-x-2 mt-2">
+        <input type="text" class="password-input w-12 text-center border rounded" maxlength="1" />
+        <input type="text" class="password-input w-12 text-center border rounded" maxlength="1" />
+        <input type="text" class="password-input w-12 text-center border rounded" maxlength="1" />
+        <input type="text" class="password-input w-12 text-center border rounded" maxlength="1" />
+        <input type="text" class="password-input w-12 text-center border rounded" maxlength="1" />
+      </div>
+      <div id="error-message" class="error-message"></div>
+      <div class="mt-4 flex space-x-2">
+        <button class="bg-gray-800 text-white px-4 py-2 rounded" onclick="checkPassword()">Submit</button>
+        <button class="bg-gray-400 text-white px-4 py-2 rounded" onclick="document.getElementById('password-modal').style.display='none'">Close</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Desktop Icons -->
   <div class="absolute left-8 top-16 space-y-8 text-white">
