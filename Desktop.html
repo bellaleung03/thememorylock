@@ -113,21 +113,140 @@
       }
     }
 
+    // function showDocument(name) {
+    //   if (name === 'Aaron Anderson') {
+    //     showPasswordModal(() => {
+    //       const documentEl = document.getElementById('document');
+    //       const iframe = document.getElementById('document-iframe');
+    //       documentEl.style.display = 'block';
+    //       iframe.src = `data:text/html;charset=utf-8,<html><head><title>${name}</title></head>
+    //       <body style="font-family: Arial, sans-serif; margin: 20px;">
+    //       <h1>${name}</h1>
+    //       <p>Age: 23<br>
+    //       Gender: male<br>
+    //       Deletion date: Nil</p>
+    //       <h2>Observation</h2><ul>
+    //       <li>Nil</li>
+    //       </ul><h2>Replacement NPC error log</h2>
+    //       <p>RIP, Aaron.</p></body></html>`;
+    //     });
+    //   } else {
+    //     const documentEl = document.getElementById('document');
+    //     const iframe = document.getElementById('document-iframe');
+    //     documentEl.style.display = 'block';
+    //     iframe.src = `data:text/html;charset=utf-8,<html><head><title>${name}</title></head><body style="font-family: Arial, sans-serif; margin: 20px;"><h1>${name}</h1><p>Age: ${Math.floor(Math.random() * 50) + 20}</p><h2>Experience</h2><ul><li>Improved customer retention by 25%</li><li>Reduced operational costs by 15%</li></ul><h2>Education</h2><p>Jasper University, BS Data Science, 20XX</p></body></html>`;
+    //   }
+    // }
+
     function showDocument(name) {
-      if (name === 'Aaron Anderson') {
-        showPasswordModal(() => {
+      const patients = {
+        'Aaron Anderson': {
+          age: 23,
+          gender: 'male',
+          deletionDate: 'Nil',
+          observation: 'Nil',
+          errorLog: 'RIP, Aaron.'
+        },
+        'Emily Johnson': {
+          age: 29,
+          gender: 'female',
+          deletionDate: '2036/2/19',
+          observation: 'Displays signs of anxiety and restlessness, frequently shifts in seat.',
+          errorLog: 'Staring blankly at the wall for extended periods, mumbling incoherently.'
+        },
+        'Lucas Thompson': {
+          age: 32,
+          gender: 'male',
+          deletionDate: '2037/3/25',
+          observation: 'Exhibits calm demeanor but occasionally laughs at inappropriate moments.',
+          errorLog: 'Bumping into walls 3 times, repeatedly asking if it is their turn.'
+        },
+        'Sarah Williams': {
+          age: 27,
+          gender: 'female',
+          deletionDate: '2033/5/5',
+          observation: 'Frequently looks out the window, lost in thought, appears withdrawn.',
+          errorLog: 'Talking to themselves about past events, occasionally crying.'
+        },
+        'Daniel Brown': {
+          age: 34,
+          gender: 'male',
+          deletionDate: '2034/2/5',
+          observation: 'Shows signs of agitation, often taps fingers on the table.',
+          errorLog: 'Repeats phrases from earlier conversations, seems unaware of surroundings.'
+        },
+        'George Davis': {
+          age: 31,
+          gender: 'male',
+          deletionDate: '2037/12/24',
+          observation: 'Displays indifference towards surroundings, rarely engages with others.',
+          errorLog: 'Stands in corners, staring at nothing for long periods.'
+        },
+        'Ulla Wilson': {
+          age: 28,
+          gender: 'female',
+          deletionDate: '2042/11/29',
+          observation: 'Wanders aimlessly, occasionally stops to talk to imaginary friends.',
+          errorLog: 'Has been seen pacing back and forth, mumbling about "the end."'
+        },
+        'Olivia Miller': {
+          age: 30,
+          gender: 'female',
+          deletionDate: '2040/4/14',
+          observation: 'Frequently checks the time, appears impatient and frustrated.',
+          errorLog: 'Asks the same question repeatedly, confused about their location.'
+        },
+        'Matthew Taylor': {
+          age: 35,
+          gender: 'male',
+          deletionDate: '2034/5/4',
+          observation: 'Engages in repetitive head movements, seems lost in thought.',
+          errorLog: 'Attempts to interact with non-existent objects, laughing sporadically.'
+        },
+        'Rachel Pitts': {
+          age: 26,
+          gender: 'female',
+          deletionDate: '2034/12/20',
+          observation: 'Appears to be in a state of denial, often reminisces about the past.',
+          errorLog: 'Tries to leave the area repeatedly, claiming to have an appointment elsewhere.'
+        }
+      };
+
+        const patient = patients[name];
+
+        if (name === 'Aaron Anderson') {
+          showPasswordModal(() => {
+            const documentEl = document.getElementById('document');
+            const iframe = document.getElementById('document-iframe');
+            documentEl.style.display = 'block';
+            iframe.src = `data:text/html;charset=utf-8,<html><head><title>${name}</title></head>
+            <body style="font-family: Arial, sans-serif; margin: 20px;">
+            <h1>${name}</h1>
+            <p>Age: ${patient.age}<br>
+            Gender: ${patient.gender}<br>
+            Deletion date: ${patient.deletionDate}</p>
+            <h2>Observation</h2><ul>
+            <li>${patient.observation}</li>
+            </ul><h2>Replacement NPC error log</h2>
+            <p>${patient.errorLog}</p></body></html>`;
+          });
+        } else {
           const documentEl = document.getElementById('document');
           const iframe = document.getElementById('document-iframe');
           documentEl.style.display = 'block';
-          iframe.src = `data:text/html;charset=utf-8,<html><head><title>${name}</title></head><body style="font-family: Arial, sans-serif; margin: 20px;"><h1>${name}</h1><p>Age: ${Math.floor(Math.random() * 50) + 20}</p><h2>Experience</h2><ul><li>Improved customer retention by 25%</li><li>Reduced operational costs by 15%</li></ul><h2>Education</h2><p>Jasper University, BS Data Science, 20XX</p></body></html>`;
-        });
-      } else {
-        const documentEl = document.getElementById('document');
-        const iframe = document.getElementById('document-iframe');
-        documentEl.style.display = 'block';
-        iframe.src = `data:text/html;charset=utf-8,<html><head><title>${name}</title></head><body style="font-family: Arial, sans-serif; margin: 20px;"><h1>${name}</h1><p>Age: ${Math.floor(Math.random() * 50) + 20}</p><h2>Experience</h2><ul><li>Improved customer retention by 25%</li><li>Reduced operational costs by 15%</li></ul><h2>Education</h2><p>Jasper University, BS Data Science, 20XX</p></body></html>`;
+          iframe.src = `data:text/html;charset=utf-8,<html><head><title>${name}</title></head>
+          <body style="font-family: Arial, sans-serif; margin: 20px;">
+          <h1>${name}</h1>
+          <p>Age: ${patient.age}<br>
+          Gender: ${patient.gender}<br>
+          Deletion date: ${patient.deletionDate}</p>
+          <h2>Observation</h2><ul>
+          <li>${patient.observation}</li>
+          </ul><h2>Replacement NPC error log</h2>
+          <p>${patient.errorLog}</p></body></html>`;
+        }
       }
-    }
+
 
     function closeDocument() {
       const documentEl = document.getElementById('document');
@@ -180,7 +299,7 @@
 
   <!-- File Explorer -->
   <div id="file-explorer" class="file-explorer">
-    <h2 class="text-lg font-semibold mb-4">Patients' Files</h2>
+    <h2 class="text-lg font-semibold mb-4">Memory RElock Name List</h2>
     <div class="space-y-2">
       <!-- Simulated Word Documents -->
       <div class="flex justify-between" onclick="showDocument('Aaron Anderson')">
@@ -219,8 +338,8 @@
         <span>Matthew Taylor.docx</span>
         <button class="text-blue-500">Open</button>
       </div>
-      <div class="flex justify-between" onclick="showDocument('Rachel Anderson')">
-        <span>Rachel Anderson.docx</span>
+      <div class="flex justify-between" onclick="showDocument('Rachel Pitts')">
+        <span>Rachel Pitts.docx</span>
         <button class="text-blue-500">Open</button>
       </div>
     </div>
