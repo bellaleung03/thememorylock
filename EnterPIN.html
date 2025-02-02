@@ -80,7 +80,9 @@
 
       if (pin === "0902") {
         // Redirect to another page
-        window.external.Notify("PinCorrect");
+        // window.external.Notify("PinCorrect");
+        window.chrome.webview.postMessage("PinCorrect");
+        
         window.location.href = "Desktop.html"; // Replace with the actual URL of the next page
       } else {
         // Show error message
