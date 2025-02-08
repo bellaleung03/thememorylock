@@ -73,6 +73,7 @@
   </div>
 
   <audio id="errorSound" src="https://github.com/bellaleung03/thememorylock/raw/refs/heads/main/error-sound-fx.wav" preload="auto"></audio>
+   <audio id="loginSound" src="https://github.com/bellaleung03/thememorylock/raw/refs/heads/main/success-sound-fx.mp3" preload="auto"></audio>
   <script>
     // Function to handle PIN validation
     function validatePin() {
@@ -82,7 +83,8 @@
       if (pin === "0902") {
         // Redirect to another page
         window.external.Notify("PinCorrect");
-        
+        const loginSound = document.getElementById('loginSound');
+        loginSound.play();
         window.location.href = "Desktop.html"; // Replace with the actual URL of the next page
       } else {
         // Show error message
