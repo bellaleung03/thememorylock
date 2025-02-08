@@ -72,6 +72,7 @@
     </div>
   </div>
 
+  <audio id="errorSound" src="error-sound-fx.wav" preload="auto"></audio>
   <script>
     // Function to handle PIN validation
     function validatePin() {
@@ -81,12 +82,13 @@
       if (pin === "0902") {
         // Redirect to another page
         window.external.Notify("PinCorrect");
-        // window.chrome.webview.postMessage("PinCorrect");
         
         window.location.href = "Desktop.html"; // Replace with the actual URL of the next page
       } else {
         // Show error message
         errorMessage.classList.remove('hidden');
+        const errorSound = document.getElementById('errorSound');
+        errorSound.play();
       }
     }
 
