@@ -20,7 +20,7 @@
       background-color: rgba(255, 255, 255, 0.2);
       border-radius: 0.5rem;
     }
-    .file-explorer {
+    .file-explorer, .recycle-bin-modal {
       display: none; /* Initially hidden */
       position: absolute;
       top: 50%;
@@ -93,6 +93,10 @@
       const explorer = document.getElementById('file-explorer');
       explorer.style.display = explorer.style.display === 'none' || explorer.style.display === '' ? 'block' : 'none';
     }
+    function toggleRecycleBin() {
+      const recycleBin = document.getElementById('recycle-bin-modal');
+      recycleBin.style.display = recycleBin.style.display === 'none' || recycleBin.style.display === '' ? 'block' : 'none';
+    }
 
     function showPasswordModal(callback) {
       currentCallback = callback; // Store the callback function
@@ -114,30 +118,6 @@
       }
     }
 
-    // function showDocument(name) {
-    //   if (name === 'Aaron Anderson') {
-    //     showPasswordModal(() => {
-    //       const documentEl = document.getElementById('document');
-    //       const iframe = document.getElementById('document-iframe');
-    //       documentEl.style.display = 'block';
-    //       iframe.src = `data:text/html;charset=utf-8,<html><head><title>${name}</title></head>
-    //       <body style="font-family: Arial, sans-serif; margin: 20px;">
-    //       <h1>${name}</h1>
-    //       <p>Age: 23<br>
-    //       Gender: male<br>
-    //       Deletion date: Nil</p>
-    //       <h2>Observation</h2><ul>
-    //       <li>Nil</li>
-    //       </ul><h2>Replacement NPC error log</h2>
-    //       <p>RIP, Aaron.</p></body></html>`;
-    //     });
-    //   } else {
-    //     const documentEl = document.getElementById('document');
-    //     const iframe = document.getElementById('document-iframe');
-    //     documentEl.style.display = 'block';
-    //     iframe.src = `data:text/html;charset=utf-8,<html><head><title>${name}</title></head><body style="font-family: Arial, sans-serif; margin: 20px;"><h1>${name}</h1><p>Age: ${Math.floor(Math.random() * 50) + 20}</p><h2>Experience</h2><ul><li>Improved customer retention by 25%</li><li>Reduced operational costs by 15%</li></ul><h2>Education</h2><p>Jasper University, BS Data Science, 20XX</p></body></html>`;
-    //   }
-    // }
 
     function showDocument(name) {
       const patients = {
@@ -279,7 +259,7 @@
   <!-- Desktop Icons -->
   <div class="absolute left-8 top-16 space-y-8 text-white">
     <!-- Recycle Bin Icon -->
-    <div class="icon-container flex flex-col items-center cursor-pointer">
+    <div class="icon-container flex flex-col items-center cursor-pointer" onclick="toggleRecycleBin()">
       <img
         src="https://www.tenforums.com/geek/gars/images/2/types/thumb_Recycle_Bin_Empty.png"
         alt="Recycle Bin Icon"
@@ -353,6 +333,13 @@
     <button class="close-button" onclick="closeDocument()">Close</button>
   </div>
 
+  <!-- Recycle Bin Modal -->
+  <div id="recycle-bin-modal" class="recycle-bin-modal">
+    <h2 class="text-lg font-semibold mb-4">Recycle Bin</h2>
+    <p class="text-gray-600">The recycle bin is empty.</p>
+    <button class="mt-4 bg-gray-800 text-white px-4 py-2 rounded" onclick="toggleRecycleBin()">Close</button>
+  </div>
+  
   <!-- Taskbar -->
   <div class="absolute bottom-0 w-full h-12 bg-gray-800 flex items-center px-4">
     <!-- Taskbar Items -->
