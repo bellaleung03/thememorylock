@@ -109,7 +109,7 @@
       const inputs = document.querySelectorAll('.password-input');
       const password = Array.from(inputs).map(input => input.value).join('');
       
-      if (password === "LAUGH") {
+      if (password.toUpperCase() === "LAUGH") {
         window.external.Notify("PwCorrect");
         document.getElementById('password-modal').style.display = 'none'; // Hide modal
         currentCallback(); // Call the callback function
