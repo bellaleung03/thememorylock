@@ -196,26 +196,25 @@
 
         const patient = patients[name];
 
+        
         if (name === 'Aaron Anderson') {
-              showPasswordModal(() => {
-                  const documentEl = document.getElementById('document');
-                  const iframe = document.getElementById('document-iframe');
-                  const patient = patients[name]; // Assuming patients object is accessible here
-                  documentEl.style.display = 'block';
-                  iframe.src = `data:text/html;charset=utf-8,<html><head><title>${name}</title></head>
-                  <body style="font-family: Arial, sans-serif; margin: 20px;">
-                  <h1>${name}</h1>
-                  <p>Age: ${patient.age}<br>
-                  Gender: ${patient.gender}<br>
-                  Deletion date: ${patient.deletionDate}</p>
-                  <h2>Observation</h2><ul>
-                  <li>${patient.observation}</li>
-                  </ul><h2>Replacement NPC error log</h2>
-                  <p>${patient.errorLog}</p>
-                  <img src="${patient.image}" alt="${name}" style="max-width: 200px;">
-                  </body></html>`;
-              });
-          } else {
+          showPasswordModal(() => {
+            const documentEl = document.getElementById('document');
+            const iframe = document.getElementById('document-iframe');
+            documentEl.style.display = 'block';
+            iframe.src = `data:text/html;charset=utf-8,<html><head><title>${name}</title></head>
+            <body style="font-family: Arial, sans-serif; margin: 20px;">
+            <h1>${name}</h1>
+            <p>Age: ${patient.age}<br>
+            Gender: ${patient.gender}<br>
+            Deletion date: ${patient.deletionDate}</p>
+            <img src="${patient.image}" alt="${name}" style="max-width: 200px;">
+            <h2>Observation</h2><ul>
+            <li>${patient.observation}</li>
+            </ul><h2>Replacement NPC error log</h2>
+            <p>${patient.errorLog}</p></body></html>`;
+          });
+        } else {
           const documentEl = document.getElementById('document');
           const iframe = document.getElementById('document-iframe');
           documentEl.style.display = 'block';
